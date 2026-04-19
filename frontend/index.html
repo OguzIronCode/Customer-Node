@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChurnSense — Müşteri Kayıp Analizi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- NAV -->
+  <nav class="fade-up">
+    <div class="logo">
+      <div class="logo-icon">◈</div>
+      ChurnSense
+    </div>
+    <div class="nav-pill">Müşteri Kayıp Tahmin Sistemi</div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero fade-up delay-1">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      AI Destekli Risk Analizi
+    </div>
+    <h1>Müşterin ayrılmadan<br /><em>önce haberdar ol.</em></h1>
+    <p>Müşteri bilgilerini girerek anlık kayıp riski tahmini ve kişiselleştirilmiş kampanya önerisi al.</p>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- FORM CARD -->
+    <div class="glass-card form-card fade-up delay-2">
+      <form id="predictionForm">
+
+        <!-- Demografik -->
+        <div class="section-tag">Demografik Bilgiler</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Cinsiyet</label>
+            <select id="gender">
+              <option value="Male">Erkek</option>
+              <option value="Female">Kadın</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Yaşlı Vatandaş</label>
+            <select id="seniorCitizen">
+              <option value="0">Hayır</option>
+              <option value="1">Evet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Partneri Var</label>
+            <select id="partner">
+              <option value="No">Hayır</option>
+              <option value="Yes">Evet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Bakmakla Yükümlü</label>
+            <select id="dependents">
+              <option value="No">Hayır</option>
+              <option value="Yes">Evet</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Abonelik -->
+        <div class="section-tag">Abonelik & Sözleşme</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Abonelik Süresi (Ay)</label>
+            <input type="number" id="tenure" min="0" max="72" value="12" placeholder="0–72" />
+          </div>
+          <div class="form-group">
+            <label>Sözleşme Türü</label>
+            <select id="contract">
+              <option value="Month-to-month">Aylık</option>
+              <option value="One year">1 Yıllık</option>
+              <option value="Two year">2 Yıllık</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Aylık Ücret (₺)</label>
+            <input type="number" id="monthlyCharges" min="0" max="500" value="65" />
+          </div>
+          <div class="form-group">
+            <label>Toplam Ücret (₺)</label>
+            <input type="number" id="totalCharges" min="0" max="10000" value="780" />
+          </div>
+        </div>
+
+        <!-- Hizmetler -->
+        <div class="section-tag">Hizmetler</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Telefon Hizmeti</label>
+            <select id="phoneService">
+              <option value="Yes">Evet</option>
+              <option value="No">Hayır</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Çoklu Hat</label>
+            <select id="multipleLines">
+              <option value="No">Hayır</option>
+              <option value="Yes">Evet</option>
+              <option value="No phone service">Telefon Yok</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>İnternet Hizmeti</label>
+            <select id="internetService" onchange="updateInternetUI()">
+              <option value="DSL">DSL</option>
+              <option value="Fiber optic">Fiber Optik</option>
+              <option value="No">Yok</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Ek Hizmetler -->
+        <div class="section-tag" style="margin-top:18px;">Ek Hizmetler</div>
+        <div class="toggle-grid" id="toggleGrid">
+          <label class="toggle-item" id="ti-onlineSecurity">
+            <input type="checkbox" onchange="tog(this,'onlineSecurity')" />
+            <span class="check-box">✓</span>
+            <span class="lbl">Online Security</span>
+          </label>
+          <label class="toggle-item" id="ti-onlineBackup">
+            <input type="checkbox" onchange="tog(this,'onlineBackup')" />
+            <span class="check-box">✓</span>
+            <span class="lbl">Online Backup</span>
+          </label>
+          <label class="toggle-item" id="ti-deviceProtection">
+            <input type="checkbox" onchange="tog(this,'deviceProtection')" />
+            <span class="check-box">✓</span>
+            <span class="lbl">Device Protection</span>
+          </label>
+          <label class="toggle-item" id="ti-techSupport">
+            <input type="checkbox" onchange="tog(this,'techSupport')" />
+            <span class="check-box">✓</span>
+            <span class="lbl">Tech Support</span>
+          </label>
+          <label class="toggle-item" id="ti-streamingTV">
+            <input type="checkbox" onchange="tog(this,'streamingTV')" />
+            <span class="check-box">✓</span>
+            <span class="lbl">Streaming TV</span>
+          </label>
+          <label class="toggle-item" id="ti-streamingMovies">
+            <input type="checkbox" onchange="tog(this,'streamingMovies')" />
+            <span class="check-box">✓</span>
+            <span class="lbl">Streaming Movies</span>
+          </label>
+        </div>
+
+        <!-- Ödeme -->
+        <div class="section-tag">Fatura & Ödeme</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>e-Fatura</label>
+            <select id="paperlessBilling">
+              <option value="Yes">Evet</option>
+              <option value="No">Hayır</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Ödeme Yöntemi</label>
+            <select id="paymentMethod">
+              <option value="Electronic check">Elektronik Çek</option>
+              <option value="Mailed check">Posta Çeki</option>
+              <option value="Bank transfer (automatic)">Otomatik Banka Transferi</option>
+              <option value="Credit card (automatic)">Otomatik Kredi Kartı</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button id="submitBtn" type="submit" class="btn-submit">
+          <span class="spinner" id="spinner"></span>
+          <span id="btnArrow">→</span>
+          <span id="btnText">Riski Analiz Et</span>
+        </button>
+
+        <div class="error-banner" id="errorBanner">
+          ⚠ Sunucuya erişilemiyor. Demo mod gösteriliyor.
+        </div>
+
+      </form>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel fade-up delay-3">
+
+      <!-- RESULT CARD -->
+      <div class="glass-card result-card" id="resultCard">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-orb">◈</div>
+          <p>Müşteri bilgilerini doldurup analiz et butonuna bas.</p>
+        </div>
+        <div class="result-content" id="resultContent" style="display:none;">
+          <div class="result-top">
+            <div class="result-top-label">Kayıp Olasılığı</div>
+            <div class="risk-pill" id="riskPill">—</div>
+          </div>
+          <div class="big-pct" id="bigPct">—</div>
+          <div class="prog-track">
+            <div class="prog-fill" id="progFill"></div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-box">
+              <div class="stat-box-label">Abonelik</div>
+              <div class="stat-box-val" id="statTenure">—</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-box-label">Aylık Ücret</div>
+              <div class="stat-box-val" id="statCharge">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CAMPAIGN CARD -->
+      <div class="glass-card campaign-card" id="campaignCard">
+        <div class="campaign-head">
+          <div class="campaign-icon-box">★</div>
+          <div class="campaign-eyebrow">Önerilen Kampanya</div>
+        </div>
+        <div class="campaign-subject" id="campaignSubject">—</div>
+        <div class="campaign-msg" id="campaignMsg">—</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
