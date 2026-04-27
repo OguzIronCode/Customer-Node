@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ChurnSense — Müşteri Kayıp Analizi</title>
+  <meta name="description" content="AI destekli müşteri kayıp tahmin ve kampanya öneri sistemi." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -72,7 +75,7 @@
         </div>
 
         <!-- Abonelik -->
-        <div class="section-tag">Abonelik & Sözleşme</div>
+        <div class="section-tag">Abonelik &amp; Sözleşme</div>
         <div class="form-grid">
           <div class="form-group">
             <label>Abonelik Süresi (Ay)</label>
@@ -160,7 +163,7 @@
         </div>
 
         <!-- Ödeme -->
-        <div class="section-tag">Fatura & Ödeme</div>
+        <div class="section-tag">Fatura &amp; Ödeme</div>
         <div class="form-grid">
           <div class="form-group">
             <label>e-Fatura</label>
@@ -187,8 +190,9 @@
           <span id="btnText">Riski Analiz Et</span>
         </button>
 
-        <div class="error-banner" id="errorBanner">
-          ⚠ Sunucuya erişilemiyor. Demo mod gösteriliyor.
+        <!-- Error Note -->
+        <div class="error-banner" id="errorNote" style="display:none;">
+          ⚠ Sunucuya erişilemiyor — demo mod gösteriliyor.
         </div>
 
       </form>
@@ -197,36 +201,73 @@
     <!-- RIGHT PANEL -->
     <div class="right-panel fade-up delay-3">
 
-      <!-- RESULT CARD -->
-      <div class="glass-card result-card" id="resultCard">
-        <div class="empty-state" id="emptyState">
+      <!-- DASHBOARD METRICS -->
+      <div class="glass-card metrics-card" id="dashboardMetrics">
+        <!-- Empty state -->
+        <div class="empty-state" id="dashboardEmpty">
           <div class="empty-orb">◈</div>
-          <p>Müşteri bilgilerini doldurup analiz et butonuna bas.</p>
+          <p>Formu doldurup analiz et butonuna bas.</p>
         </div>
-        <div class="result-content" id="resultContent" style="display:none;">
-          <div class="result-top">
-            <div class="result-top-label">Kayıp Olasılığı</div>
-            <div class="risk-pill" id="riskPill">—</div>
-          </div>
-          <div class="big-pct" id="bigPct">—</div>
-          <div class="prog-track">
-            <div class="prog-fill" id="progFill"></div>
-          </div>
-          <div class="stat-row">
-            <div class="stat-box">
-              <div class="stat-box-label">Abonelik</div>
-              <div class="stat-box-val" id="statTenure">—</div>
+        <!-- Filled state -->
+        <div id="dashboardFilled" style="display:none;">
+          <div class="metrics-row">
+            <div class="metric-box">
+              <div class="metric-label">Kayıp Riski</div>
+              <div class="metric-value" id="mPct">—</div>
+              <div class="metric-sub" id="mRiskLabel">—</div>
             </div>
-            <div class="stat-box">
-              <div class="stat-box-label">Aylık Ücret</div>
-              <div class="stat-box-val" id="statCharge">—</div>
+            <div class="metric-box">
+              <div class="metric-label">Abonelik</div>
+              <div class="metric-value neutral" id="mTenure">—</div>
+              <div class="metric-sub">ay</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Aylık Ücret</div>
+              <div class="metric-value neutral" id="mCharge">—</div>
+              <div class="metric-sub">₺</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Hizmet Sayısı</div>
+              <div class="metric-value neutral" id="mServices">—</div>
+              <div class="metric-sub">adet</div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- GAUGE CARD -->
+      <div class="glass-card gauge-card">
+        <div class="gauge-title">Risk Göstergesi</div>
+
+        <!-- Gauge empty -->
+        <div class="empty-state small" id="gaugeEmpty">
+          <p>Henüz analiz yapılmadı.</p>
+        </div>
+
+        <!-- Gauge area -->
+        <div id="gaugeArea" style="display:none; flex-direction:column; align-items:center;">
+          <div style="position:relative; width:220px; height:120px;">
+            <canvas id="gaugeChart" width="220" height="120"></canvas>
+            <div class="gauge-center-text">
+              <div class="gauge-pct" id="gaugePct">—</div>
+              <div class="gauge-risk-txt" id="gaugeRiskTxt">—</div>
+            </div>
+          </div>
+          <span class="risk-badge" id="riskBadge" style="display:none;"></span>
+        </div>
+      </div>
+
+      <!-- FACTORS CARD -->
+      <div class="glass-card factors-card">
+        <div class="factors-title">Risk Faktörleri</div>
+        <div class="empty-state small" id="factorsEmpty">
+          <p>Analiz sonrası faktörler burada görünür.</p>
+        </div>
+        <div id="factorsList" style="display:none;"></div>
+      </div>
+
       <!-- CAMPAIGN CARD -->
-      <div class="glass-card campaign-card" id="campaignCard">
+      <div class="glass-card campaign-card" id="campaignPanel" style="display:none;">
         <div class="campaign-head">
           <div class="campaign-icon-box">★</div>
           <div class="campaign-eyebrow">Önerilen Kampanya</div>

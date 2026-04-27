@@ -183,9 +183,11 @@ function showResult(data, payload) {
   const pct = Math.round(data.churn_probability ?? data.churn_risk ?? 0);
   const cls = riskCls(pct);
 
-  // Hide empty state
+  // Hide empty state, show filled dashboard
   const emptyEl = document.getElementById("dashboardEmpty");
   if (emptyEl) emptyEl.style.display = "none";
+  const filledEl = document.getElementById("dashboardFilled");
+  if (filledEl) filledEl.style.display = "block";
 
   // Metrics
   const mPct = document.getElementById("mPct");
