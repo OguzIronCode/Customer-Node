@@ -111,12 +111,12 @@ function setLoading(on) {
 // ── HELPERS ──────────────────────────────────────
 
 function riskCls(pct) { return pct >= 60 ? "high" : pct >= 35 ? "medium" : "low"; }
-function riskLabel(cls) { return { high: "Yüksek Risk", medium: "Orta Risk", low: "Düşük Risk" }[cls]; }
+function riskLabel(cls) { return { high: "CRITICAL RISK", medium: "ELEVATED RISK", low: "OPTIMAL STATE" }[cls]; }
 
 const GAUGE_COLORS = {
-  high: { fill: "#c0392b", bg: "#f9d6d3" },
-  medium: { fill: "#8a5a00", bg: "#fde9b0" },
-  low: { fill: "#1a7a4a", bg: "#c8eed9" },
+  high: { fill: "#ff3333", bg: "rgba(255, 51, 51, 0.1)" },
+  medium: { fill: "#ffb800", bg: "rgba(255, 184, 0, 0.1)" },
+  low: { fill: "#00ff88", bg: "rgba(0, 255, 136, 0.1)" },
 };
 
 // ── GAUGE ─────────────────────────────────────────
@@ -220,20 +220,20 @@ function showResult(data, payload) {
     html += `
       <div class="factor-item">
         <div class="factor-name">${f.name}</div>
-        <div class="factor-track">
-          <div class="factor-fill ${fc}" data-w="${f.val}"></div>
-        </div>
         <div class="factor-val ${fc}">${f.val}%</div>
+        <div class="factor-bar-bg">
+          <div class="factor-bar-fill ${fc}" data-w="${f.val}"></div>
+        </div>
       </div>`;
   });
   document.getElementById("factorsEmpty").style.display = "none";
-  document.getElementById("factorsList").style.display = "block";
+  document.getElementById("factorsList").style.display = "flex";
   document.getElementById("factorsList").innerHTML = html;
 
   // Animate factor bars
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      document.querySelectorAll(".factor-fill[data-w]").forEach(el => {
+      document.querySelectorAll(".factor-bar-fill[data-w]").forEach(el => {
         el.style.width = el.dataset.w + "%";
       });
     });

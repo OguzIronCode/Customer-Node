@@ -3,281 +3,278 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChurnSense — Müşteri Kayıp Analizi</title>
-  <meta name="description" content="AI destekli müşteri kayıp tahmin ve kampanya öneri sistemi." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <title>ChurnSense // Neural Core</title>
+  <meta name="description" content="Advanced AI Churn Prediction Engine." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div class="page-wrap">
+<!-- Background FX -->
+<div class="cyber-grid"></div>
+<div class="glow-orb orb-1"></div>
+<div class="glow-orb orb-2"></div>
 
-  <!-- NAV -->
-  <nav class="fade-up">
-    <div class="logo">
-      <div class="logo-icon">◈</div>
-      ChurnSense
+<div class="app-layout">
+  <!-- HEADER -->
+  <header class="top-nav">
+    <div class="brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="brand-text">CHURNSENSE<span class="version">v2.0</span></div>
     </div>
-    <div class="nav-pill">Müşteri Kayıp Tahmin Sistemi</div>
-  </nav>
-
-  <!-- HERO -->
-  <div class="hero fade-up delay-1">
-    <div class="hero-eyebrow">
-      <span class="hero-eyebrow-dot"></span>
-      AI Destekli Risk Analizi
+    <div class="status-indicator">
+      <div class="pulse-dot"></div>
+      <span>SYSTEM ONLINE</span>
     </div>
-    <h1>Müşterin ayrılmadan<br /><em>önce haberdar ol.</em></h1>
-    <p>Müşteri bilgilerini girerek anlık kayıp riski tahmini ve kişiselleştirilmiş kampanya önerisi al.</p>
-  </div>
+  </header>
 
-  <!-- MAIN GRID -->
-  <div class="main-grid">
+  <main class="dashboard">
+    <!-- LEFT PANEL: INPUT CORE -->
+    <aside class="panel input-panel">
+      <div class="panel-header">
+        <h2>Target Parameters</h2>
+        <p>Configure customer data matrix</p>
+      </div>
 
-    <!-- FORM CARD -->
-    <div class="glass-card form-card fade-up delay-2">
-      <form id="predictionForm">
-
-        <!-- Demografik -->
-        <div class="section-tag">Demografik Bilgiler</div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Cinsiyet</label>
-            <select id="gender">
-              <option value="Male">Erkek</option>
-              <option value="Female">Kadın</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Yaşlı Vatandaş</label>
-            <select id="seniorCitizen">
-              <option value="0">Hayır</option>
-              <option value="1">Evet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Partneri Var</label>
-            <select id="partner">
-              <option value="No">Hayır</option>
-              <option value="Yes">Evet</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Bakmakla Yükümlü</label>
-            <select id="dependents">
-              <option value="No">Hayır</option>
-              <option value="Yes">Evet</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Abonelik -->
-        <div class="section-tag">Abonelik &amp; Sözleşme</div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Abonelik Süresi (Ay)</label>
-            <input type="number" id="tenure" min="0" max="72" value="12" placeholder="0–72" />
-          </div>
-          <div class="form-group">
-            <label>Sözleşme Türü</label>
-            <select id="contract">
-              <option value="Month-to-month">Aylık</option>
-              <option value="One year">1 Yıllık</option>
-              <option value="Two year">2 Yıllık</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Aylık Ücret (₺)</label>
-            <input type="number" id="monthlyCharges" min="0" max="500" value="65" />
-          </div>
-          <div class="form-group">
-            <label>Toplam Ücret (₺)</label>
-            <input type="number" id="totalCharges" min="0" max="10000" value="780" />
-          </div>
-        </div>
-
-        <!-- Hizmetler -->
-        <div class="section-tag">Hizmetler</div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Telefon Hizmeti</label>
-            <select id="phoneService">
-              <option value="Yes">Evet</option>
-              <option value="No">Hayır</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Çoklu Hat</label>
-            <select id="multipleLines">
-              <option value="No">Hayır</option>
-              <option value="Yes">Evet</option>
-              <option value="No phone service">Telefon Yok</option>
-            </select>
-          </div>
-          <div class="form-group full">
-            <label>İnternet Hizmeti</label>
-            <select id="internetService" onchange="updateInternetUI()">
-              <option value="DSL">DSL</option>
-              <option value="Fiber optic">Fiber Optik</option>
-              <option value="No">Yok</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Ek Hizmetler -->
-        <div class="section-tag" style="margin-top:18px;">Ek Hizmetler</div>
-        <div class="toggle-grid" id="toggleGrid">
-          <label class="toggle-item" id="ti-onlineSecurity">
-            <input type="checkbox" onchange="tog(this,'onlineSecurity')" />
-            <span class="check-box">✓</span>
-            <span class="lbl">Online Security</span>
-          </label>
-          <label class="toggle-item" id="ti-onlineBackup">
-            <input type="checkbox" onchange="tog(this,'onlineBackup')" />
-            <span class="check-box">✓</span>
-            <span class="lbl">Online Backup</span>
-          </label>
-          <label class="toggle-item" id="ti-deviceProtection">
-            <input type="checkbox" onchange="tog(this,'deviceProtection')" />
-            <span class="check-box">✓</span>
-            <span class="lbl">Device Protection</span>
-          </label>
-          <label class="toggle-item" id="ti-techSupport">
-            <input type="checkbox" onchange="tog(this,'techSupport')" />
-            <span class="check-box">✓</span>
-            <span class="lbl">Tech Support</span>
-          </label>
-          <label class="toggle-item" id="ti-streamingTV">
-            <input type="checkbox" onchange="tog(this,'streamingTV')" />
-            <span class="check-box">✓</span>
-            <span class="lbl">Streaming TV</span>
-          </label>
-          <label class="toggle-item" id="ti-streamingMovies">
-            <input type="checkbox" onchange="tog(this,'streamingMovies')" />
-            <span class="check-box">✓</span>
-            <span class="lbl">Streaming Movies</span>
-          </label>
-        </div>
-
-        <!-- Ödeme -->
-        <div class="section-tag">Fatura &amp; Ödeme</div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>e-Fatura</label>
-            <select id="paperlessBilling">
-              <option value="Yes">Evet</option>
-              <option value="No">Hayır</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Ödeme Yöntemi</label>
-            <select id="paymentMethod">
-              <option value="Electronic check">Elektronik Çek</option>
-              <option value="Mailed check">Posta Çeki</option>
-              <option value="Bank transfer (automatic)">Otomatik Banka Transferi</option>
-              <option value="Credit card (automatic)">Otomatik Kredi Kartı</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Submit -->
-        <button id="submitBtn" type="submit" class="btn-submit">
-          <span class="spinner" id="spinner"></span>
-          <span id="btnArrow">→</span>
-          <span id="btnText">Riski Analiz Et</span>
-        </button>
-
-        <!-- Error Note -->
-        <div class="error-banner" id="errorNote" style="display:none;">
-          ⚠ Sunucuya erişilemiyor — demo mod gösteriliyor.
-        </div>
-
-      </form>
-    </div>
-
-    <!-- RIGHT PANEL -->
-    <div class="right-panel fade-up delay-3">
-
-      <!-- DASHBOARD METRICS -->
-      <div class="glass-card metrics-card" id="dashboardMetrics">
-        <!-- Empty state -->
-        <div class="empty-state" id="dashboardEmpty">
-          <div class="empty-orb">◈</div>
-          <p>Formu doldurup analiz et butonuna bas.</p>
-        </div>
-        <!-- Filled state -->
-        <div id="dashboardFilled" style="display:none;">
-          <div class="metrics-row">
-            <div class="metric-box">
-              <div class="metric-label">Kayıp Riski</div>
-              <div class="metric-value" id="mPct">—</div>
-              <div class="metric-sub" id="mRiskLabel">—</div>
+      <div class="panel-content">
+        <form id="predictionForm" class="data-form">
+          
+          <!-- Demographics -->
+          <fieldset class="data-group">
+            <legend>01 // Demographics</legend>
+            <div class="grid-2">
+              <div class="input-wrap">
+                <label>Gender</label>
+                <select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select>
+              </div>
+              <div class="input-wrap">
+                <label>Senior Citizen</label>
+                <select id="seniorCitizen"><option value="0">No</option><option value="1">Yes</option></select>
+              </div>
+              <div class="input-wrap">
+                <label>Partner</label>
+                <select id="partner"><option value="No">No</option><option value="Yes">Yes</option></select>
+              </div>
+              <div class="input-wrap">
+                <label>Dependents</label>
+                <select id="dependents"><option value="No">No</option><option value="Yes">Yes</option></select>
+              </div>
             </div>
-            <div class="metric-box">
-              <div class="metric-label">Abonelik</div>
-              <div class="metric-value neutral" id="mTenure">—</div>
-              <div class="metric-sub">ay</div>
+          </fieldset>
+
+          <!-- Subscription -->
+          <fieldset class="data-group">
+            <legend>02 // Contract Data</legend>
+            <div class="grid-2">
+              <div class="input-wrap">
+                <label>Tenure (Months)</label>
+                <input type="number" id="tenure" min="0" max="72" value="12" />
+              </div>
+              <div class="input-wrap">
+                <label>Contract Type</label>
+                <select id="contract">
+                  <option value="Month-to-month">Monthly</option>
+                  <option value="One year">1 Year</option>
+                  <option value="Two year">2 Years</option>
+                </select>
+              </div>
+              <div class="input-wrap">
+                <label>Monthly ($)</label>
+                <input type="number" id="monthlyCharges" min="0" max="500" value="65" />
+              </div>
+              <div class="input-wrap">
+                <label>Total ($)</label>
+                <input type="number" id="totalCharges" min="0" max="10000" value="780" />
+              </div>
             </div>
-            <div class="metric-box">
-              <div class="metric-label">Aylık Ücret</div>
-              <div class="metric-value neutral" id="mCharge">—</div>
-              <div class="metric-sub">₺</div>
+          </fieldset>
+
+          <!-- Services -->
+          <fieldset class="data-group">
+            <legend>03 // Services Infrastructure</legend>
+            <div class="grid-2">
+              <div class="input-wrap">
+                <label>Phone Service</label>
+                <select id="phoneService">
+                  <option value="Yes">Yes</option><option value="No">No</option>
+                </select>
+              </div>
+              <div class="input-wrap">
+                <label>Multi-Line</label>
+                <select id="multipleLines">
+                  <option value="No">No</option><option value="Yes">Yes</option><option value="No phone service">N/A</option>
+                </select>
+              </div>
+              <div class="input-wrap full-width">
+                <label>Internet Backbone</label>
+                <select id="internetService" onchange="updateInternetUI()">
+                  <option value="Fiber optic">Fiber Optic</option>
+                  <option value="DSL">DSL</option>
+                  <option value="No">None</option>
+                </select>
+              </div>
             </div>
-            <div class="metric-box">
-              <div class="metric-label">Hizmet Sayısı</div>
-              <div class="metric-value neutral" id="mServices">—</div>
-              <div class="metric-sub">adet</div>
+
+            <div class="addon-grid" id="toggleGrid">
+              <label class="addon-btn" id="ti-onlineSecurity">
+                <input type="checkbox" onchange="tog(this,'onlineSecurity')" />
+                <span class="addon-icon">SEC</span>
+                <span class="addon-lbl">Security</span>
+              </label>
+              <label class="addon-btn" id="ti-onlineBackup">
+                <input type="checkbox" onchange="tog(this,'onlineBackup')" />
+                <span class="addon-icon">BKP</span>
+                <span class="addon-lbl">Backup</span>
+              </label>
+              <label class="addon-btn" id="ti-deviceProtection">
+                <input type="checkbox" onchange="tog(this,'deviceProtection')" />
+                <span class="addon-icon">PRO</span>
+                <span class="addon-lbl">Protection</span>
+              </label>
+              <label class="addon-btn" id="ti-techSupport">
+                <input type="checkbox" onchange="tog(this,'techSupport')" />
+                <span class="addon-icon">SUP</span>
+                <span class="addon-lbl">Support</span>
+              </label>
+              <label class="addon-btn" id="ti-streamingTV">
+                <input type="checkbox" onchange="tog(this,'streamingTV')" />
+                <span class="addon-icon">TV</span>
+                <span class="addon-lbl">Stream TV</span>
+              </label>
+              <label class="addon-btn" id="ti-streamingMovies">
+                <input type="checkbox" onchange="tog(this,'streamingMovies')" />
+                <span class="addon-icon">MOV</span>
+                <span class="addon-lbl">Movies</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Billing -->
+          <fieldset class="data-group">
+            <legend>04 // Financials</legend>
+            <div class="grid-2">
+              <div class="input-wrap">
+                <label>Paperless</label>
+                <select id="paperlessBilling"><option value="Yes">Yes</option><option value="No">No</option></select>
+              </div>
+              <div class="input-wrap">
+                <label>Payment Method</label>
+                <select id="paymentMethod">
+                  <option value="Electronic check">E-Check</option>
+                  <option value="Credit card (automatic)">Credit Card</option>
+                  <option value="Bank transfer (automatic)">Bank Transfer</option>
+                  <option value="Mailed check">Mailed Check</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <button id="submitBtn" type="submit" class="cyber-btn">
+            <div class="btn-glitch"></div>
+            <span class="btn-content">
+              <span id="spinner" class="spinner" style="display:none;"></span>
+              <span id="btnText">INITIALIZE ANALYSIS</span>
+              <span id="btnArrow">_></span>
+            </span>
+          </button>
+
+          <div class="sys-error" id="errorNote" style="display:none;">
+            <div class="error-icon">!</div>
+            <span>SYS_ERR: UPLINK FAILED. OFFLINE DEMO MODE ACTIVE.</span>
+          </div>
+
+        </form>
+      </div>
+    </aside>
+
+    <!-- RIGHT PANEL: ANALYTICS CORE -->
+    <section class="panel output-panel">
+      
+      <!-- Top Metrics Row -->
+      <div class="output-row metrics-row" id="dashboardMetrics">
+        <div id="dashboardEmpty" class="standby-mode">
+          <div class="scanner-line"></div>
+          <p>AWAITING DATA INGESTION...</p>
+        </div>
+        
+        <div id="dashboardFilled" style="display:none; width:100%;">
+          <div class="kpi-grid">
+            <div class="kpi-card highlight">
+              <div class="kpi-title">CHURN PROBABILITY</div>
+              <div class="kpi-value" id="mPct">--%</div>
+              <div class="kpi-sub" id="mRiskLabel">--</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">TENURE</div>
+              <div class="kpi-value mono" id="mTenure">--</div>
+              <div class="kpi-sub">MONTHS</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">MRR</div>
+              <div class="kpi-value mono"><span class="currency">$</span><span id="mCharge">--</span></div>
+              <div class="kpi-sub">MONTHLY REVENUE</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-title">ACTIVE NODES</div>
+              <div class="kpi-value mono" id="mServices">--</div>
+              <div class="kpi-sub">SERVICES</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- GAUGE CARD -->
-      <div class="glass-card gauge-card">
-        <div class="gauge-title">Risk Göstergesi</div>
-
-        <!-- Gauge empty -->
-        <div class="empty-state small" id="gaugeEmpty">
-          <p>Henüz analiz yapılmadı.</p>
-        </div>
-
-        <!-- Gauge area -->
-        <div id="gaugeArea" style="display:none; flex-direction:column; align-items:center;">
-          <div style="position:relative; width:220px; height:120px;">
-            <canvas id="gaugeChart" width="220" height="120"></canvas>
-            <div class="gauge-center-text">
-              <div class="gauge-pct" id="gaugePct">—</div>
-              <div class="gauge-risk-txt" id="gaugeRiskTxt">—</div>
+      <div class="output-row viz-row">
+        <!-- Gauge Chart -->
+        <div class="viz-card gauge-card">
+          <div class="card-title">RISK TELEMETRY</div>
+          <div id="gaugeEmpty" class="no-data-text">[ NO TELEMETRY ]</div>
+          <div id="gaugeArea" class="gauge-container" style="display:none;">
+            <div class="gauge-canvas-wrap">
+              <canvas id="gaugeChart" width="240" height="150"></canvas>
+              <div class="gauge-data">
+                <div id="gaugePct" class="gauge-num">--%</div>
+                <div id="gaugeRiskTxt" class="gauge-lbl">--</div>
+              </div>
             </div>
+            <div id="riskBadge" class="status-badge" style="display:none;">--</div>
           </div>
-          <span class="risk-badge" id="riskBadge" style="display:none;"></span>
+        </div>
+
+        <!-- Factors List -->
+        <div class="viz-card factors-card">
+          <div class="card-title">VECTOR ANALYSIS</div>
+          <div id="factorsEmpty" class="no-data-text">[ NO VECTORS ]</div>
+          <div id="factorsList" class="factors-container" style="display:none;">
+            <!-- Generated via JS -->
+          </div>
         </div>
       </div>
 
-      <!-- FACTORS CARD -->
-      <div class="glass-card factors-card">
-        <div class="factors-title">Risk Faktörleri</div>
-        <div class="empty-state small" id="factorsEmpty">
-          <p>Analiz sonrası faktörler burada görünür.</p>
+      <!-- AI Campaign Suggestion -->
+      <div class="ai-campaign-panel" id="campaignPanel" style="display:none;">
+        <div class="ai-header">
+          <div class="ai-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+          </div>
+          <h3>AI RETENTION PROTOCOL GENERATED</h3>
         </div>
-        <div id="factorsList" style="display:none;"></div>
+        <div class="ai-body">
+          <div class="ai-subject" id="campaignSubject">--</div>
+          <div class="ai-msg" id="campaignMsg">--</div>
+        </div>
+        <button class="deploy-btn">DEPLOY CAMPAIGN</button>
       </div>
 
-      <!-- CAMPAIGN CARD -->
-      <div class="glass-card campaign-card" id="campaignPanel" style="display:none;">
-        <div class="campaign-head">
-          <div class="campaign-icon-box">★</div>
-          <div class="campaign-eyebrow">Önerilen Kampanya</div>
-        </div>
-        <div class="campaign-subject" id="campaignSubject">—</div>
-        <div class="campaign-msg" id="campaignMsg">—</div>
-      </div>
-
-    </div>
-  </div>
+    </section>
+  </main>
 </div>
 
 <script src="main.js"></script>
