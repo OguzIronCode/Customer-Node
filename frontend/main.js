@@ -105,13 +105,13 @@ function setLoading(on) {
   btn.disabled = on;
   document.getElementById("spinner").style.display = on ? "inline-block" : "none";
   document.getElementById("btnArrow").style.display = on ? "none" : "inline";
-  document.getElementById("btnText").textContent = on ? "Analiz ediliyor..." : "Riski Analiz Et";
+  document.getElementById("btnText").textContent = on ? "ANALİZ EDİLİYOR..." : "ANALİZİ BAŞLAT";
 }
 
 // ── HELPERS ──────────────────────────────────────
 
 function riskCls(pct) { return pct >= 60 ? "high" : pct >= 35 ? "medium" : "low"; }
-function riskLabel(cls) { return { high: "CRITICAL RISK", medium: "ELEVATED RISK", low: "OPTIMAL STATE" }[cls]; }
+function riskLabel(cls) { return { high: "KRİTİK RİSK", medium: "YÜKSEK RİSK", low: "OPTİMAL DURUM" }[cls]; }
 
 const GAUGE_COLORS = {
   high: { fill: "#ff3333", bg: "rgba(255, 51, 51, 0.1)" },

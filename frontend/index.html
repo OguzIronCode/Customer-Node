@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChurnSense // Neural Core</title>
-  <meta name="description" content="Advanced AI Churn Prediction Engine." />
+  <title>CustomerNode // Neural Core</title>
+  <meta name="description" content="Gelişmiş Yapay Zeka Müşteri Kayıp Tahmin Motoru." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,14 +25,64 @@
   <!-- HEADER -->
   <header class="top-nav">
     <div class="brand">
-      <div class="brand-logo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <div class="brand-logo custom-logo">
+        <!-- SVG Node Logo -->
+        <svg viewBox="0 0 100 100" class="node-logo-svg">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#1b417c" />
+              <stop offset="50%" stop-color="#21859c" />
+              <stop offset="100%" stop-color="#80c681" />
+            </linearGradient>
+          </defs>
+          <!-- Lines -->
+          <path d="M50 15 L30 25 L20 45 L20 60 L30 80 L50 90 L70 80 L80 65" fill="none" stroke="url(#logoGrad)" stroke-width="2" stroke-dasharray="4,2"/>
+          <path d="M50 15 L50 30 L35 40 L35 60 L50 70 L70 60 L60 45" fill="none" stroke="url(#logoGrad)" stroke-width="2.5"/>
+          <path d="M30 25 L50 30" fill="none" stroke="#21859c" stroke-width="1.5"/>
+          <path d="M20 45 L35 40" fill="none" stroke="#1b417c" stroke-width="1.5"/>
+          <path d="M20 60 L35 60" fill="none" stroke="#1b417c" stroke-width="1.5"/>
+          <path d="M30 80 L50 70" fill="none" stroke="#21859c" stroke-width="1.5"/>
+          <path d="M70 80 L70 60" fill="none" stroke="#80c681" stroke-width="1.5"/>
+          <path d="M80 65 L60 45" fill="none" stroke="#80c681" stroke-width="1.5"/>
+          
+          <!-- Large C Curve -->
+          <path d="M65 30 A 25 25 0 0 0 35 50 A 25 25 0 0 0 65 75" fill="none" stroke="url(#logoGrad)" stroke-width="10" stroke-linecap="round"/>
+          
+          <!-- Nodes -->
+          <circle cx="50" cy="15" r="4" fill="#21859c" />
+          <circle cx="30" cy="25" r="3.5" fill="#1b417c" />
+          <circle cx="20" cy="45" r="3.5" fill="#1b417c" />
+          <circle cx="20" cy="60" r="4" fill="#1b417c" />
+          <circle cx="30" cy="80" r="3" fill="#1b417c" />
+          <circle cx="50" cy="90" r="4.5" fill="#21859c" />
+          <circle cx="70" cy="80" r="3.5" fill="#21859c" />
+          <circle cx="80" cy="65" r="4" fill="#80c681" />
+          
+          <!-- Inner Nodes -->
+          <circle cx="50" cy="30" r="5" fill="#21859c" />
+          <circle cx="35" cy="40" r="3" fill="#1b417c" />
+          <circle cx="35" cy="60" r="3" fill="#1b417c" />
+          <circle cx="50" cy="70" r="4.5" fill="#1b417c" />
+          <circle cx="70" cy="60" r="3" fill="#21859c" />
+          <circle cx="60" cy="45" r="3.5" fill="#80c681" />
+          
+          <!-- Abstract Person Icon 1 -->
+          <circle cx="35" cy="25" r="2" fill="#80c681" />
+          <path d="M32 32 A 3 3 0 0 1 38 32 Z" fill="#80c681" />
+          
+          <!-- Abstract Person Icon 2 -->
+          <circle cx="45" cy="50" r="2.5" fill="#21859c" />
+          <path d="M41 58 A 4 4 0 0 1 49 58 Z" fill="#21859c" />
+        </svg>
       </div>
-      <div class="brand-text">CHURNSENSE<span class="version">v2.0</span></div>
+      <div class="brand-text-wrapper">
+        <div class="brand-text">Customer<span class="brand-text-light">Node</span></div>
+        <div class="brand-subtext">CUSTOMER CHURN & RETENTION ANALYTICS</div>
+      </div>
     </div>
     <div class="status-indicator">
       <div class="pulse-dot"></div>
-      <span>SYSTEM ONLINE</span>
+      <span>SİSTEM ÇEVRİMİÇİ</span>
     </div>
   </header>
 
@@ -40,8 +90,8 @@
     <!-- LEFT PANEL: INPUT CORE -->
     <aside class="panel input-panel">
       <div class="panel-header">
-        <h2>Target Parameters</h2>
-        <p>Configure customer data matrix</p>
+        <h2>Hedef Parametreler</h2>
+        <p>Müşteri veri matrisini yapılandır</p>
       </div>
 
       <div class="panel-content">
@@ -49,49 +99,49 @@
           
           <!-- Demographics -->
           <fieldset class="data-group">
-            <legend>01 // Demographics</legend>
+            <legend>01 // Demografik</legend>
             <div class="grid-2">
               <div class="input-wrap">
-                <label>Gender</label>
-                <select id="gender"><option value="Male">Male</option><option value="Female">Female</option></select>
+                <label>Cinsiyet</label>
+                <select id="gender"><option value="Male">Erkek</option><option value="Female">Kadın</option></select>
               </div>
               <div class="input-wrap">
-                <label>Senior Citizen</label>
-                <select id="seniorCitizen"><option value="0">No</option><option value="1">Yes</option></select>
+                <label>Yaşlı Vatandaş</label>
+                <select id="seniorCitizen"><option value="0">Hayır</option><option value="1">Evet</option></select>
               </div>
               <div class="input-wrap">
                 <label>Partner</label>
-                <select id="partner"><option value="No">No</option><option value="Yes">Yes</option></select>
+                <select id="partner"><option value="No">Hayır</option><option value="Yes">Evet</option></select>
               </div>
               <div class="input-wrap">
-                <label>Dependents</label>
-                <select id="dependents"><option value="No">No</option><option value="Yes">Yes</option></select>
+                <label>Bakmakla Yükümlü</label>
+                <select id="dependents"><option value="No">Hayır</option><option value="Yes">Evet</option></select>
               </div>
             </div>
           </fieldset>
 
           <!-- Subscription -->
           <fieldset class="data-group">
-            <legend>02 // Contract Data</legend>
+            <legend>02 // Sözleşme Verileri</legend>
             <div class="grid-2">
               <div class="input-wrap">
-                <label>Tenure (Months)</label>
+                <label>Abonelik Süresi (Ay)</label>
                 <input type="number" id="tenure" min="0" max="72" value="12" />
               </div>
               <div class="input-wrap">
-                <label>Contract Type</label>
+                <label>Sözleşme Türü</label>
                 <select id="contract">
-                  <option value="Month-to-month">Monthly</option>
-                  <option value="One year">1 Year</option>
-                  <option value="Two year">2 Years</option>
+                  <option value="Month-to-month">Aylık</option>
+                  <option value="One year">1 Yıllık</option>
+                  <option value="Two year">2 Yıllık</option>
                 </select>
               </div>
               <div class="input-wrap">
-                <label>Monthly ($)</label>
+                <label>Aylık (₺)</label>
                 <input type="number" id="monthlyCharges" min="0" max="500" value="65" />
               </div>
               <div class="input-wrap">
-                <label>Total ($)</label>
+                <label>Toplam (₺)</label>
                 <input type="number" id="totalCharges" min="0" max="10000" value="780" />
               </div>
             </div>
@@ -99,26 +149,26 @@
 
           <!-- Services -->
           <fieldset class="data-group">
-            <legend>03 // Services Infrastructure</legend>
+            <legend>03 // Hizmet Altyapısı</legend>
             <div class="grid-2">
               <div class="input-wrap">
-                <label>Phone Service</label>
+                <label>Telefon Hizmeti</label>
                 <select id="phoneService">
-                  <option value="Yes">Yes</option><option value="No">No</option>
+                  <option value="Yes">Evet</option><option value="No">Hayır</option>
                 </select>
               </div>
               <div class="input-wrap">
-                <label>Multi-Line</label>
+                <label>Çoklu Hat</label>
                 <select id="multipleLines">
-                  <option value="No">No</option><option value="Yes">Yes</option><option value="No phone service">N/A</option>
+                  <option value="No">Hayır</option><option value="Yes">Evet</option><option value="No phone service">Yok</option>
                 </select>
               </div>
               <div class="input-wrap full-width">
-                <label>Internet Backbone</label>
+                <label>İnternet Altyapısı</label>
                 <select id="internetService" onchange="updateInternetUI()">
-                  <option value="Fiber optic">Fiber Optic</option>
+                  <option value="Fiber optic">Fiber Optik</option>
                   <option value="DSL">DSL</option>
-                  <option value="No">None</option>
+                  <option value="No">Yok</option>
                 </select>
               </div>
             </div>
@@ -126,52 +176,52 @@
             <div class="addon-grid" id="toggleGrid">
               <label class="addon-btn" id="ti-onlineSecurity">
                 <input type="checkbox" onchange="tog(this,'onlineSecurity')" />
-                <span class="addon-icon">SEC</span>
-                <span class="addon-lbl">Security</span>
+                <span class="addon-icon">GÜV</span>
+                <span class="addon-lbl">Güvenlik</span>
               </label>
               <label class="addon-btn" id="ti-onlineBackup">
                 <input type="checkbox" onchange="tog(this,'onlineBackup')" />
-                <span class="addon-icon">BKP</span>
-                <span class="addon-lbl">Backup</span>
+                <span class="addon-icon">YDK</span>
+                <span class="addon-lbl">Yedekleme</span>
               </label>
               <label class="addon-btn" id="ti-deviceProtection">
                 <input type="checkbox" onchange="tog(this,'deviceProtection')" />
-                <span class="addon-icon">PRO</span>
-                <span class="addon-lbl">Protection</span>
+                <span class="addon-icon">KOR</span>
+                <span class="addon-lbl">Koruma</span>
               </label>
               <label class="addon-btn" id="ti-techSupport">
                 <input type="checkbox" onchange="tog(this,'techSupport')" />
-                <span class="addon-icon">SUP</span>
-                <span class="addon-lbl">Support</span>
+                <span class="addon-icon">DES</span>
+                <span class="addon-lbl">Destek</span>
               </label>
               <label class="addon-btn" id="ti-streamingTV">
                 <input type="checkbox" onchange="tog(this,'streamingTV')" />
                 <span class="addon-icon">TV</span>
-                <span class="addon-lbl">Stream TV</span>
+                <span class="addon-lbl">TV Yayını</span>
               </label>
               <label class="addon-btn" id="ti-streamingMovies">
                 <input type="checkbox" onchange="tog(this,'streamingMovies')" />
-                <span class="addon-icon">MOV</span>
-                <span class="addon-lbl">Movies</span>
+                <span class="addon-icon">FLM</span>
+                <span class="addon-lbl">Film Yayını</span>
               </label>
             </div>
           </fieldset>
 
           <!-- Billing -->
           <fieldset class="data-group">
-            <legend>04 // Financials</legend>
+            <legend>04 // Finansal</legend>
             <div class="grid-2">
               <div class="input-wrap">
-                <label>Paperless</label>
-                <select id="paperlessBilling"><option value="Yes">Yes</option><option value="No">No</option></select>
+                <label>E-Fatura</label>
+                <select id="paperlessBilling"><option value="Yes">Evet</option><option value="No">Hayır</option></select>
               </div>
               <div class="input-wrap">
-                <label>Payment Method</label>
+                <label>Ödeme Yöntemi</label>
                 <select id="paymentMethod">
-                  <option value="Electronic check">E-Check</option>
-                  <option value="Credit card (automatic)">Credit Card</option>
-                  <option value="Bank transfer (automatic)">Bank Transfer</option>
-                  <option value="Mailed check">Mailed Check</option>
+                  <option value="Electronic check">E-Çek</option>
+                  <option value="Credit card (automatic)">Kredi Kartı</option>
+                  <option value="Bank transfer (automatic)">Banka Transferi</option>
+                  <option value="Mailed check">Posta Çeki</option>
                 </select>
               </div>
             </div>
@@ -181,14 +231,14 @@
             <div class="btn-glitch"></div>
             <span class="btn-content">
               <span id="spinner" class="spinner" style="display:none;"></span>
-              <span id="btnText">INITIALIZE ANALYSIS</span>
+              <span id="btnText">ANALİZİ BAŞLAT</span>
               <span id="btnArrow">_></span>
             </span>
           </button>
 
           <div class="sys-error" id="errorNote" style="display:none;">
             <div class="error-icon">!</div>
-            <span>SYS_ERR: UPLINK FAILED. OFFLINE DEMO MODE ACTIVE.</span>
+            <span>SİSTEM_HATASI: BAĞLANTI KOPTU. ÇEVRİMDIŞI DEMO MODU AKTİF.</span>
           </div>
 
         </form>
@@ -202,30 +252,30 @@
       <div class="output-row metrics-row" id="dashboardMetrics">
         <div id="dashboardEmpty" class="standby-mode">
           <div class="scanner-line"></div>
-          <p>AWAITING DATA INGESTION...</p>
+          <p>VERİ GİRİŞİ BEKLENİYOR...</p>
         </div>
         
         <div id="dashboardFilled" style="display:none; width:100%;">
           <div class="kpi-grid">
             <div class="kpi-card highlight">
-              <div class="kpi-title">CHURN PROBABILITY</div>
+              <div class="kpi-title">KAYIP OLASILIĞI</div>
               <div class="kpi-value" id="mPct">--%</div>
               <div class="kpi-sub" id="mRiskLabel">--</div>
             </div>
             <div class="kpi-card">
-              <div class="kpi-title">TENURE</div>
+              <div class="kpi-title">ABONELİK</div>
               <div class="kpi-value mono" id="mTenure">--</div>
-              <div class="kpi-sub">MONTHS</div>
+              <div class="kpi-sub">AY</div>
             </div>
             <div class="kpi-card">
-              <div class="kpi-title">MRR</div>
-              <div class="kpi-value mono"><span class="currency">$</span><span id="mCharge">--</span></div>
-              <div class="kpi-sub">MONTHLY REVENUE</div>
+              <div class="kpi-title">AYLIK GELİR</div>
+              <div class="kpi-value mono"><span id="mCharge">--</span><span class="currency"> ₺</span></div>
+              <div class="kpi-sub">AYLIK DÜZENLİ GELİR</div>
             </div>
             <div class="kpi-card">
-              <div class="kpi-title">ACTIVE NODES</div>
+              <div class="kpi-title">AKTİF HİZMETLER</div>
               <div class="kpi-value mono" id="mServices">--</div>
-              <div class="kpi-sub">SERVICES</div>
+              <div class="kpi-sub">HİZMET</div>
             </div>
           </div>
         </div>
@@ -234,8 +284,8 @@
       <div class="output-row viz-row">
         <!-- Gauge Chart -->
         <div class="viz-card gauge-card">
-          <div class="card-title">RISK TELEMETRY</div>
-          <div id="gaugeEmpty" class="no-data-text">[ NO TELEMETRY ]</div>
+          <div class="card-title">RİSK TELEMETRİSİ</div>
+          <div id="gaugeEmpty" class="no-data-text">[ TELEMETRİ YOK ]</div>
           <div id="gaugeArea" class="gauge-container" style="display:none;">
             <div class="gauge-canvas-wrap">
               <canvas id="gaugeChart" width="240" height="150"></canvas>
@@ -250,8 +300,8 @@
 
         <!-- Factors List -->
         <div class="viz-card factors-card">
-          <div class="card-title">VECTOR ANALYSIS</div>
-          <div id="factorsEmpty" class="no-data-text">[ NO VECTORS ]</div>
+          <div class="card-title">VEKTÖR ANALİZİ</div>
+          <div id="factorsEmpty" class="no-data-text">[ VEKTÖR YOK ]</div>
           <div id="factorsList" class="factors-container" style="display:none;">
             <!-- Generated via JS -->
           </div>
@@ -264,13 +314,13 @@
           <div class="ai-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
           </div>
-          <h3>AI RETENTION PROTOCOL GENERATED</h3>
+          <h3>YAPAY ZEKA ELDE TUTMA PROTOKOLÜ OLUŞTURULDU</h3>
         </div>
         <div class="ai-body">
           <div class="ai-subject" id="campaignSubject">--</div>
           <div class="ai-msg" id="campaignMsg">--</div>
         </div>
-        <button class="deploy-btn">DEPLOY CAMPAIGN</button>
+        <button class="deploy-btn">KAMPANYAYI UYGULA</button>
       </div>
 
     </section>
