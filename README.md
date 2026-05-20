@@ -130,5 +130,7 @@ Veri bilimi iş akışımı detaylı incelemek için Jupyter notebook'larına g�
 Beni organizasyonunuz için değerlendiriyorsanız veya proje hakkında fikir alışverişi yapmak isterseniz, lütfen iletişime geçmekten çekinmeyin!
 
 **[Oğuzhan Demirbaş / linkedin.com/in/oğuzhan-demirbaş-8025b62b2/]** | **oguzzh4nn@gmail.com**
+
 **[Ahsen Emin Yorulmaz / linkedin.com/in/ahseneminyorulmaz/]** | **ahseneminyorulmaz@gmail.com**
+
 **[Oğuzhan Demirbaş / linkedin.com/in/mert-can-aydin/-8025b62b2/]** | **mrtcnaydin.34@gmail.com**
